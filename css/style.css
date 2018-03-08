@@ -1,4 +1,4 @@
-.box__square {
+.game__box-front {
   width: 120px;
   height: 120px;
   border: 1px solid black;
@@ -7,7 +7,7 @@
   background-color: #333;
 }
 
-.box {
+.game {
   display: flex;
   flex-wrap: wrap;
   width: 568px;
