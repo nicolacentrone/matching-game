@@ -2,21 +2,50 @@ var numberSeries = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
 var gameBoxBack = [];
 var nodes = [];
 var gameFlipper = [];
-var node;
-var num;
+var number1;
+var number2;
+var isFlipped = "false";
+var eventTarget1;
+var eventTarget2;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
   for (var i = 0; i < gameFlipper.length; i++) {
     var node = gameFlipper[i];
-    node.addEventListener("click", flip, false);
+    node.addEventListener("click", flipperLogic, false);
   }
 }
 
-function flip (event) {
-  var parent = event.target.parentNode;
-  parent.classList.toggle("flip");
+function flipperLogic (event) {
+    if (isFlipped === "false") {
+      flip(event);
+      number1 = event.target.nextElementSibling.classList[1];
+      eventTarget1 = event.target;
+      isFlipped = "true";
+    } else {
+      flip(event);
+      number2 = event.target.nextElementSibling.classList[1];
+      eventTarget2 = event.target;
+      if (number1 != number2) {
+        unflip(eventTarget1, eventTarget2);
+      } else {
+        isFlipped = "false";
+      }
+    }
 }
+
+function flip (evt) {
+  evt.target.parentNode.setAttribute("class", "game__flipper flip");
+}
+
+function unflip (node1, node2) {
+  setTimeout(function() {
+    node1.parentNode.setAttribute("class", "game__flipper");
+    node2.parentNode.setAttribute("class", "game__flipper");
+  }, 1000);
+  isFlipped = "false";
+}
+
 
 function shuffle(a) {
     var j, x, i;
@@ -43,9 +72,30 @@ function setSeries (nodes, numberSeries) {
 
 function setPictures () {
   for (let i = 0; i < gameBoxBack.length; i++) {
-    num = gameBoxBack[i].classList[1];
+    var num = gameBoxBack[i].classList[1];
     if (num == 1) {
-      gameBoxBack[i].style.backgroundImage = "url(img/charmander.jpg)";
+      gameBoxBack[i].style.backgroundImage = "url(img/ivysaur.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 2) {
+      gameBoxBack[i].style.backgroundImage = "url(img/pikachu.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 3) {
+      gameBoxBack[i].style.backgroundImage = "url(img/krabby.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 4) {
+      gameBoxBack[i].style.backgroundImage = "url(img/pidgeon.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 5) {
+      gameBoxBack[i].style.backgroundImage = "url(img/vaporeon.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 6) {
+      gameBoxBack[i].style.backgroundImage = "url(img/dugtrio.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 7) {
+      gameBoxBack[i].style.backgroundImage = "url(img/jigglypuff.png)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
+    } else if (num == 8) {
+      gameBoxBack[i].style.backgroundImage = "url(img/squirtle.png)";
       gameBoxBack[i].style.backgroundSize = "120px 120px";
     }
   }
