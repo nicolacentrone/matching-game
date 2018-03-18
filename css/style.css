@@ -45,4 +45,5 @@
 
 .game__box-back {
 	transform: rotateY(180deg);
+  background-color: #9c4;
 }

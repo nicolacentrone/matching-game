@@ -1,11 +1,21 @@
 var numberSeries = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
 var gameBoxBack = [];
 var nodes = [];
-var newImg;
+var gameFlipper = [];
+var node;
 var num;
 
-function flip(event) {
-  gameFlipper.classList.toggle("flip");
+function setEventListeners () {
+  gameFlipper = document.querySelectorAll(".game__flipper");
+  for (var i = 0; i < gameFlipper.length; i++) {
+    var node = gameFlipper[i];
+    node.addEventListener("click", flip, false);
+  }
+}
+
+function flip (event) {
+  var parent = event.target.parentNode;
+  parent.classList.toggle("flip");
 }
 
 function shuffle(a) {
@@ -35,17 +45,13 @@ function setPictures () {
   for (let i = 0; i < gameBoxBack.length; i++) {
     num = gameBoxBack[i].classList[1];
     if (num == 1) {
-      newImg = document.createElement("img");
-      newImg.setAttribute("class", "picture");
-      newImg.setAttribute("src", "img/charmander.jpg");
-      newImg.setAttribute("alt", "Charmander Pokémon");
-      gameBoxBack[i].appendChild(newImg);
+      gameBoxBack[i].style.backgroundImage = "url(img/charmander.jpg)";
+      gameBoxBack[i].style.backgroundSize = "120px 120px";
     }
   }
 }
 
-gameFlipper = document.querySelector(".game__flipper");
-gameFlipper.addEventListener("click", flip, false);
 shuffle(numberSeries);
 setSeries(nodes, numberSeries);
 setPictures();
+setEventListeners();
