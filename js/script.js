@@ -77,6 +77,7 @@ function shuffle(a) {
 }
 
 function setSeries (nodes, numberSeries) {
+  nodes = [];
   gameBoxBack = document.querySelectorAll(".game__box-back");
   for (let i = 0; i < gameBoxBack.length; i++) {
     var node = gameBoxBack[i];
@@ -121,19 +122,75 @@ function setPictures () {
 }
 
 function winningScreen () {
-  document.querySelector("body").remove();
-  var newBody = document.createElement("body");
-  document.querySelector("html").appendChild(newBody);
+  var newMain = clearScreen();
   var newDiv = document.createElement("div")
   newDiv.setAttribute("class", "button__container");
-  newBody.appendChild(newDiv);
-  var btn = document.createElement("button")
+  newMain.appendChild(newDiv);
+  var btn = document.createElement("button");
   var text = document.createTextNode("Play again");
   btn.appendChild(text);
   newDiv.appendChild(btn);
+  btn.addEventListener("click", startGame, false);
 }
 
-shuffle(numberSeries);
-setSeries(nodes, numberSeries);
-setPictures();
-setEventListeners();
+function createGameDiv () {
+  const main = document.querySelector("main");
+  const newGameDiv = document.createElement("div");
+  main.appendChild(newGameDiv);
+  newGameDiv.setAttribute("class", "game");
+}
+
+function createFlipperContainerDiv () {
+  for (let i = 0; i < 16; i++) {
+    var gameDiv = document.querySelector(".game")
+    var newFlipperContainerDiv = document.createElement("div");
+    gameDiv.appendChild(newFlipperContainerDiv);
+    newFlipperContainerDiv.setAttribute("class", "game__flipper-container");
+  }
+}
+
+function createFlipperDiv () {
+  gameFlipperContainers = document.querySelectorAll(".game__flipper-container");
+  for (let i = 0; i < gameFlipperContainers.length; i++) {
+    var newFlipperDiv = document.createElement("div");
+    newFlipperDiv.setAttribute("class", "game__flipper")
+    gameFlipperContainers[i].appendChild(newFlipperDiv);
+  }
+}
+
+function createBoxes () {
+  gameFlipperContainers = document.querySelectorAll(".game__flipper");
+  for (let i = 0; i < gameFlipperContainers.length; i++) {
+    var newBoxFront = document.createElement("div");
+    newBoxFront.setAttribute("class", "game__box-front")
+    var newBoxBack = document.createElement("div");
+    newBoxBack.setAttribute("class", "game__box-back")
+    gameFlipperContainers[i].appendChild(newBoxFront);
+    gameFlipperContainers[i].appendChild(newBoxBack);
+  }
+}
+
+function clearScreen () {
+  document.querySelector("main").remove();
+  var newMain = document.createElement("main");
+  document.querySelector("body").appendChild(newMain);
+  return newMain;
+}
+
+function createGameStruct () {
+  clearScreen();
+  createGameDiv();
+  createFlipperContainerDiv();
+  createFlipperDiv();
+  createBoxes();
+}
+
+function startGame () {
+  createGameStruct();
+  shuffle(numberSeries);
+  setSeries(nodes, numberSeries);
+  setPictures();
+  setEventListeners();
+}
+winningScreen();
+startGame();
