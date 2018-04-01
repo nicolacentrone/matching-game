@@ -46,3 +46,21 @@
 .game__box-back {
 	transform: rotateY(180deg);
 }
+
+button {
+  margin: auto;
+  width: 150px;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  display: block;
+  background-color: #0fb8ad;
+  border: 0px;
+}
+
+.button__container {
+  margin: auto;
+  width: 50%;
+  height: 33%;
+}

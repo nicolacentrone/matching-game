@@ -4,10 +4,16 @@ var nodes = [];
 var gameFlipper = [];
 var number1;
 var number2;
-var cardFlippedN = 0;
+
+var cardsFlipped = 0;
+/* The cards that are flipped in this moment. They can be 0, 1, 2.
+** This is not the number of total cards flipped, neither the number of matches.
+*/
+
 var eventTarget1;
 var eventTarget2;
 var isCicleStarted = "false";
+var numberOfMatches = 0;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -18,26 +24,32 @@ function setEventListeners () {
 }
 
 function flipperLogic (event) {
-      if (cardFlippedN == 0 && isCicleStarted == "false") {
-        isCicleStarted = "true";
-        flip(event);
-        cardFlippedN ++;
-        number1 = event.target.nextElementSibling.classList[1];
-        eventTarget1 = event.target;
+  if (numberOfMatches < 8) {
+    if (cardsFlipped == 0 && isCicleStarted == "false") {
+      isCicleStarted = "true";
+      flip(event);
+      cardsFlipped ++;
+      number1 = event.target.nextElementSibling.classList[1];
+      eventTarget1 = event.target;
 
-      } else if (cardFlippedN == 1 && isCicleStarted == "true") {
-        flip(event);
-        cardFlippedN ++;
-        number2 = event.target.nextElementSibling.classList[1];
-        eventTarget2 = event.target;
-        if (number1 != number2) {
-          unflip(eventTarget1, eventTarget2);
-        } else {
-          cardFlippedN = 0;
-          isCicleStarted = "false";
+    } else if (cardsFlipped == 1 && isCicleStarted == "true") {
+      flip(event);
+      cardsFlipped ++;
+      number2 = event.target.nextElementSibling.classList[1];
+      eventTarget2 = event.target;
+      if (number1 != number2) {
+        unflip(eventTarget1, eventTarget2);
+      } else {
+        cardsFlipped = 0;
+        isCicleStarted = "false";
+        numberOfMatches ++;
+        if (numberOfMatches >= 8) {
+          winningScreen();
         }
       }
+    }
   }
+}
 
 function flip (evt) {
   evt.target.parentNode.setAttribute("class", "game__flipper flip");
@@ -47,7 +59,7 @@ function unflip (node1, node2) {
   setTimeout(function() {
     node1.parentNode.setAttribute("class", "game__flipper");
     node2.parentNode.setAttribute("class", "game__flipper");
-    cardFlippedN = 0;
+    cardsFlipped = 0;
     isCicleStarted = "false";
   }, 1000);
 
@@ -106,6 +118,19 @@ function setPictures () {
       gameBoxBack[i].style.backgroundSize = "120px 120px";
     }
   }
+}
+
+function winningScreen () {
+  document.querySelector("body").remove();
+  var newBody = document.createElement("body");
+  document.querySelector("html").appendChild(newBody);
+  var newDiv = document.createElement("div")
+  newDiv.setAttribute("class", "button__container");
+  newBody.appendChild(newDiv);
+  var btn = document.createElement("button")
+  var text = document.createTextNode("Play again");
+  btn.appendChild(text);
+  newDiv.appendChild(btn);
 }
 
 shuffle(numberSeries);
