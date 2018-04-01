@@ -132,6 +132,13 @@ function winningScreen () {
   btn.addEventListener("click", startGame, false);
 }
 
+function createGameHeaderDiv () {
+  const main = document.querySelector("main");
+  const newGameDiv = document.createElement("div");
+  main.appendChild(newGameDiv);
+  newGameDiv.setAttribute("class", "header");
+}
+
 function createGameDiv () {
   const main = document.querySelector("main");
   const newGameDiv = document.createElement("div");
@@ -172,7 +179,7 @@ function createBoxes () {
 function clearScreen () {
   document.querySelector("main").remove();
   var newMain = document.createElement("main");
-  document.querySelector("body").appendChild(newMain);
+  document.querySelector(".top-container").appendChild(newMain);
   return newMain;
 }
 
@@ -193,4 +200,4 @@ function startGame () {
 }
 
 winningScreen();
-// startGame();
+startGame();
