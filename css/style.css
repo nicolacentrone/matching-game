@@ -70,11 +70,13 @@ button {
 header {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 568px;
+  margin: auto;
 }
 
 .section0 {
   width: 100%;
+  height: 70px;
 }
 
 .section1, .section2 {
@@ -86,5 +88,12 @@ h1 {
   width: 40%;
   margin: auto;
   text-align: center;
-  font: normal normal 300 200%/normal "Quicksand", sans-serif;
+  font: normal normal 400 200%/normal "Quicksand", sans-serif;
+}
+
+h3 {
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+  font: normal normal 400 110%/normal "Quicksand", sans-serif;
 }

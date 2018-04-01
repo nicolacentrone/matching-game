@@ -14,6 +14,10 @@ var eventTarget1;
 var eventTarget2;
 var isCicleStarted = "false";
 var numberOfMatches = 0;
+var t;
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -177,10 +181,16 @@ function createBoxes () {
 }
 
 function clearScreen () {
-  document.querySelector("main").remove();
+  var topContainer = document.querySelector(".top-container")
+  topContainer.remove();
+  var newContainer = document.createElement("div");
+  newContainer.setAttribute("class", "top-container");
+  document.querySelector("body").appendChild(newContainer);
+  var newHeader = document.createElement("header");
   var newMain = document.createElement("main");
-  document.querySelector(".top-container").appendChild(newMain);
-  return newMain;
+  newContainer.appendChild(newHeader);
+  newContainer.appendChild(newMain);
+  return newContainer;
 }
 
 function createGameStruct () {
@@ -198,6 +208,7 @@ function startGame () {
   setSeries(nodes, numberSeries);
   setPictures();
   setEventListeners();
+  timer();
 }
 
 function createHeader () {
@@ -211,6 +222,36 @@ function createHeader () {
   newHeader.innerHTML="Memory Game";
   var section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
+  createTime();
+}
+
+function createTime (){
+  newHdr = document.createElement("h3");
+  document.querySelector(".section2").appendChild(newHdr);
+  newTime = document.createElement("time");
+  newTime.innerHTML = "00:00:00";
+  newTime.setAttribute("class", "time")
+  newHdr.appendChild(newTime);
+}
+
+function timer () {
+  t = setTimeout(addTime, 1000);
+}
+
+function addTime() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+
+    document.querySelector(".time").textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
+    (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
 }
 
 winningScreen();
