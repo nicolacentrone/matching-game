@@ -193,4 +193,4 @@ function startGame () {
 }
 
 winningScreen();
-startGame();
+// startGame();
