@@ -97,3 +97,9 @@ h3 {
   text-align: center;
   font: normal normal 400 110%/normal "Quicksand", sans-serif;
 }
+
+.stars {
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}

@@ -5,10 +5,8 @@ var gameFlipper = [];
 var number1;
 var number2;
 
-var cardsFlipped = 0;
-/* The cards that are flipped in this moment. They can be 0, 1, 2.
-** This is not the number of total cards flipped, neither the number of matches.
-*/
+var cardsFlipped = 0; /* The cards that are flipped in this moment. They can be 0, 1, 2.
+/* This is not the number of total cards flipped, neither the number of matches.*/
 
 var eventTarget1;
 var eventTarget2;
@@ -67,7 +65,6 @@ function unflip (node1, node2) {
   }, 1000);
 
 }
-
 
 function shuffle(a) {
     var j, x, i;
@@ -223,6 +220,7 @@ function createHeader () {
   var section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
   createTime();
+  createStars();
 }
 
 function createTime (){
@@ -252,6 +250,14 @@ function addTime() {
     document.querySelector(".time").textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
     (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timer();
+}
+
+function createStars () {
+  var section1 = document.querySelector(".section1");
+  var newP = document.createElement("p");
+  newP.setAttribute("class", "stars");
+  newP.innerHTML = "&#9734 &#9734 &#9734";
+  section1.appendChild(newP);
 }
 
 winningScreen();
