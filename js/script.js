@@ -185,6 +185,7 @@ function clearScreen () {
 
 function createGameStruct () {
   clearScreen();
+  createHeader();
   createGameDiv();
   createFlipperContainerDiv();
   createFlipperDiv();
@@ -197,6 +198,19 @@ function startGame () {
   setSeries(nodes, numberSeries);
   setPictures();
   setEventListeners();
+}
+
+function createHeader () {
+  var header = document.querySelector("header");
+  for (var i = 0; i < 3; i++) {
+    var newDiv = document.createElement("div");
+    newDiv.setAttribute("class", "section"+[i]);
+    header.appendChild(newDiv);
+  }
+  var newHeader = document.createElement("h1");
+  newHeader.innerHTML="Memory Game";
+  var section0 = document.querySelector(".section0");
+  section0.appendChild(newHeader);
 }
 
 winningScreen();

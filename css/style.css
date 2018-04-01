@@ -66,3 +66,25 @@ button {
   width: 50%;
   height: 33%;
 }
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.section0 {
+  width: 100%;
+}
+
+.section1, .section2 {
+  width: 50%;
+  height: 50px;
+}
+
+h1 {
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  font: normal normal 300 200%/normal "Quicksand", sans-serif;
+}
