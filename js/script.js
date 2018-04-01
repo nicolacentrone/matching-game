@@ -25,14 +25,13 @@ function setEventListeners () {
 
 function flipperLogic (event) {
   if (numberOfMatches < 8) {
-    if (cardsFlipped == 0 && isCicleStarted == "false") {
+    if ((cardsFlipped == 0 && isCicleStarted == "false") && (event.target.classList[0] == "game__box-front")) {
       isCicleStarted = "true";
       flip(event);
       cardsFlipped ++;
       number1 = event.target.nextElementSibling.classList[1];
       eventTarget1 = event.target;
-
-    } else if (cardsFlipped == 1 && isCicleStarted == "true") {
+    } else if ((cardsFlipped == 1 && isCicleStarted == "true") && (event.target.classList[0] == "game__box-front")) {
       flip(event);
       cardsFlipped ++;
       number2 = event.target.nextElementSibling.classList[1];
@@ -192,5 +191,6 @@ function startGame () {
   setPictures();
   setEventListeners();
 }
+
 winningScreen();
 startGame();
