@@ -18,6 +18,7 @@ var minutes = 0;
 var hours = 0;
 var countMoves = 0;
 var isCleared = "false";
+var isRestarted = "false";
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -222,7 +223,9 @@ function startGame () {
   setSeries(nodes, numberSeries);
   setPictures();
   setEventListeners();
-  timer();
+  if (isRestarted == "false") {
+    timer();
+  }
 }
 
 function createHeader () {
@@ -239,6 +242,7 @@ function createHeader () {
   createTime();
   createStars();
   createMoves();
+  createRepeat();
 }
 
 function createTime (){
@@ -302,5 +306,19 @@ function clearMoves () {
   section3.firstChild.remove();
 }
 
+function createRepeat () {
+  var section4 = document.querySelector(".section4");
+  var newDiv = document.createElement("div");
+  section4.appendChild(newDiv);
+  newDiv.setAttribute("class", "repeatButton__container");
+  newDiv.style.backgroundImage = "url(img/repeat.png)";
+  newDiv.style.backgroundSize = "28px 28px";
+  newDiv.addEventListener("click", reStartGame, false);
+}
+
+function reStartGame () {
+  isRestarted = "true";
+  startGame();
+}
 winningScreen();
-startGame();
+// startGame();
