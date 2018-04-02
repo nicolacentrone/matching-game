@@ -17,6 +17,7 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var countMoves = 0;
+var isCleared = "false";
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -47,15 +48,19 @@ function flipperLogic (event) {
         cardsFlipped = 0;
         isCicleStarted = "false";
         numberOfMatches ++;
-        if (numberOfMatches >= 8) {
+        if (numberOfMatches == 8) {
           winningScreen();
         }
       }
     }
   }
-  starsLogic();
-  clearMoves();
-  createMoves();
+  if (numberOfMatches < 8) {
+    starsLogic();
+    clearMoves();
+    createMoves();
+  } else {
+    numberOfMatches = 0;
+  }
 }
 
 function flip (evt) {
@@ -193,6 +198,11 @@ function clearScreen () {
   var newMain = document.createElement("main");
   newContainer.appendChild(newHeader);
   newContainer.appendChild(newMain);
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  countMoves = 0;
+  isCleared = "true";
   return newContainer;
 }
 
@@ -203,6 +213,7 @@ function createGameStruct () {
   createFlipperContainerDiv();
   createFlipperDiv();
   createBoxes();
+  isCleared = "false";
 }
 
 function startGame () {
@@ -253,10 +264,11 @@ function addTime() {
             hours ++;
         }
     }
-
-    document.querySelector(".time").textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
-    (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    timer();
+    if (isCleared == "false") {
+      document.querySelector(".time").textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
+      (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+      timer();
+    }
 }
 
 function createStars () {
