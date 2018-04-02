@@ -16,6 +16,7 @@ var t;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
+var countMoves = 0;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -39,8 +40,10 @@ function flipperLogic (event) {
       number2 = event.target.nextElementSibling.classList[1];
       eventTarget2 = event.target;
       if (number1 != number2) {
+        countMoves ++;
         unflip(eventTarget1, eventTarget2);
       } else {
+        countMoves ++;
         cardsFlipped = 0;
         isCicleStarted = "false";
         numberOfMatches ++;
@@ -50,6 +53,9 @@ function flipperLogic (event) {
       }
     }
   }
+  starsLogic();
+  clearMoves();
+  createMoves();
 }
 
 function flip (evt) {
@@ -210,17 +216,18 @@ function startGame () {
 
 function createHeader () {
   var header = document.querySelector("header");
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 5; i++) {
     var newDiv = document.createElement("div");
     newDiv.setAttribute("class", "section"+[i]);
     header.appendChild(newDiv);
   }
   var newHeader = document.createElement("h1");
-  newHeader.innerHTML="Memory Game";
+  newHeader.innerHTML="Poké Memory";
   var section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
   createTime();
   createStars();
+  createMoves();
 }
 
 function createTime (){
@@ -237,13 +244,13 @@ function timer () {
 }
 
 function addTime() {
-    seconds++;
+    seconds ++;
     if (seconds >= 60) {
         seconds = 0;
-        minutes++;
+        minutes ++;
         if (minutes >= 60) {
             minutes = 0;
-            hours++;
+            hours ++;
         }
     }
 
@@ -256,8 +263,31 @@ function createStars () {
   var section1 = document.querySelector(".section1");
   var newP = document.createElement("p");
   newP.setAttribute("class", "stars");
-  newP.innerHTML = "&#9734 &#9734 &#9734";
+  newP.innerHTML = "★ ★ ★";
   section1.appendChild(newP);
+}
+
+function starsLogic () {
+  var stars = document.querySelector(".stars");
+  if(countMoves >10 && countMoves <= 15) {
+    stars.innerHTML = "★ ★ ☆";
+  } else if (countMoves > 15 && countMoves <= 20) {
+    stars.innerHTML = "★ ☆ ☆";
+  } else if (countMoves > 25) {
+    stars.innerHTML = "☆ ☆ ☆";
+  }
+}
+
+function createMoves () {
+  var section3 = document.querySelector(".section3");
+  var newHdr = document.createElement("h3");
+  newHdr.innerHTML = "Moves: " +countMoves;
+  section3.appendChild(newHdr);
+}
+
+function clearMoves () {
+  var section3 = document.querySelector(".section3");
+  section3.firstChild.remove();
 }
 
 winningScreen();

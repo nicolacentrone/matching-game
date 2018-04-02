@@ -2,8 +2,8 @@
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  width: 568px;
-  height: 568px;
+  width: 560px;
+  height: 560px;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   padding: 10px;
   border-radius: 10px;
@@ -79,8 +79,8 @@ header {
   height: 70px;
 }
 
-.section1, .section2 {
-  width: 50%;
+.section1, .section2, .section3, .section4 {
+  width: 25%;
   height: 50px;
 }
 
