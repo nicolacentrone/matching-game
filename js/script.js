@@ -134,6 +134,7 @@ function setPictures () {
 }
 
 function winningScreen () {
+  isRestarted = "false";
   var newMain = clearScreen();
   var newDiv = document.createElement("div")
   newDiv.setAttribute("class", "button__container");
