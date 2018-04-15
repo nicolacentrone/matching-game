@@ -20,6 +20,7 @@ var countMoves = 0;
 var isCleared = "false";
 var isRestarted = "false";
 var stars;
+var newTime;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -142,7 +143,8 @@ function winningScreen () {
 
   var newDiv1= document.createElement("div");
   newDiv1.setAttribute("class", "congrat__container");
-  var congratsText = document.createTextNode("You Win!");
+  var congratsText = document.createElement("p")
+  congratsText.innerHTML = "Congratulations <br> You Win!";
   newDiv1.appendChild(congratsText);
   newDiv0.appendChild(newDiv1);
 
@@ -153,12 +155,23 @@ function winningScreen () {
   var statsDiv = [];
   for (var i = 0; i < 3; i++) {
     statsDiv[i] = document.createElement("div");
+    statsDiv[i].setAttribute("class", "stats");
     newDiv2.appendChild(statsDiv[i]);
   }
 
   var newP = document.createElement("p");
   newP.innerHTML = stars.innerHTML;
   statsDiv[0].appendChild(newP);
+
+  var newP0 = document.createElement("p");
+  newP0.innerHTML = newTime.innerHTML;
+  statsDiv[1].appendChild(newP0);
+
+  var newP1 = document.createElement("p");
+  newP1.innerHTML = countMoves + " moves";
+  statsDiv[2].appendChild(newP1);
+
+
 
   var newDiv3 = document.createElement("div");
   newDiv3.setAttribute("class", "button__container");
@@ -281,7 +294,7 @@ function createTime (){
   document.querySelector(".section2").appendChild(newHdr);
   newTime = document.createElement("time");
   newTime.innerHTML = "00:00:00";
-  newTime.setAttribute("class", "time")
+  newTime.setAttribute("class", "time");
   newHdr.appendChild(newTime);
 }
 

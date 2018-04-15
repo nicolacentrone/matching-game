@@ -50,7 +50,7 @@
 
 button {
   margin: auto;
-  margin-top: 40%;
+  margin-top: 10%;
   width: 150px;
   border-radius: 8px;
   padding: 10px;
@@ -113,7 +113,7 @@ h3 {
 }
 
 .winningScreen__container {
-  width: 100%;
+  width: auto;
   height: 30%;
   margin-top: 33%;
 }
@@ -130,4 +130,10 @@ h3 {
   width: 50%;
   margin: auto;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats {
+  width: 33%;
 }
