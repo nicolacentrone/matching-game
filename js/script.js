@@ -12,7 +12,7 @@ var eventTarget1;
 var eventTarget2;
 var isCicleStarted = "false";
 var numberOfMatches = 0;
-var t;
+var time;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -135,7 +135,7 @@ function winningScreen () {
 
   var newDiv1= document.createElement("div");
   newDiv1.setAttribute("class", "congrat__container swing");
-  var congratsText = document.createElement("p")
+  var congratsText = document.createElement("p");
   congratsText.innerHTML = "Congratulations <br> You Win!";
   newDiv1.appendChild(congratsText);
   newDiv0.appendChild(newDiv1);
@@ -173,6 +173,7 @@ function winningScreen () {
   newDiv0.appendChild(newDiv3);
 
   newMain.appendChild(newDiv0);
+  countMoves = 0;
 }
 
 function createGameHeaderDiv () {
@@ -232,7 +233,6 @@ function clearScreen () {
   seconds = 0;
   minutes = 0;
   hours = 0;
-  countMoves = 0;
   isCleared = "true";
   return newContainer;
 }
@@ -289,7 +289,7 @@ function createTime (){
 }
 
 function timer () {
-  t = setTimeout(addTime, 1000);
+  time = setTimeout(addTime, 1000);
 }
 
 function addTime() {
