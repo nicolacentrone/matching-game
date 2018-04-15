@@ -19,6 +19,7 @@ var hours = 0;
 var countMoves = 0;
 var isCleared = "false";
 var isRestarted = "false";
+var stars;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
@@ -136,14 +137,39 @@ function setPictures () {
 function winningScreen () {
   isRestarted = "false";
   var newMain = clearScreen();
-  var newDiv = document.createElement("div")
-  newDiv.setAttribute("class", "button__container");
-  newMain.appendChild(newDiv);
+  var newDiv0 = document.createElement("div");
+  newDiv0.setAttribute("class", "winningScreen__container");
+
+  var newDiv1= document.createElement("div");
+  newDiv1.setAttribute("class", "congrat__container");
+  var congratsText = document.createTextNode("You Win!");
+  newDiv1.appendChild(congratsText);
+  newDiv0.appendChild(newDiv1);
+
+  var newDiv2 = document.createElement("div");
+  newDiv0.appendChild(newDiv2);
+  newDiv2.setAttribute("class", "stats__container");
+  newDiv0.appendChild(newDiv2);
+  var statsDiv = [];
+  for (var i = 0; i < 3; i++) {
+    statsDiv[i] = document.createElement("div");
+    newDiv2.appendChild(statsDiv[i]);
+  }
+
+  var newP = document.createElement("p");
+  newP.innerHTML = stars.innerHTML;
+  statsDiv[0].appendChild(newP);
+
+  var newDiv3 = document.createElement("div");
+  newDiv3.setAttribute("class", "button__container");
   var btn = document.createElement("button");
   var text = document.createTextNode("Play again");
   btn.appendChild(text);
-  newDiv.appendChild(btn);
   btn.addEventListener("click", startGame, false);
+  newDiv3.appendChild(btn);
+  newDiv0.appendChild(newDiv3);
+
+  newMain.appendChild(newDiv0);
 }
 
 function createGameHeaderDiv () {
@@ -237,6 +263,10 @@ function createHeader () {
     header.appendChild(newDiv);
   }
   var newHeader = document.createElement("h1");
+
+//For debug purpose, you can win by clicking the header
+  newHeader.addEventListener("click", winningScreen, false);
+
   newHeader.innerHTML="Poké Memory";
   var section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
@@ -285,7 +315,7 @@ function createStars () {
 }
 
 function starsLogic () {
-  var stars = document.querySelector(".stars");
+  stars = document.querySelector(".stars");
   if(countMoves >10 && countMoves <= 15) {
     stars.innerHTML = "★ ★ ☆";
   } else if (countMoves > 15 && countMoves <= 20) {
@@ -321,5 +351,6 @@ function reStartGame () {
   isRestarted = "true";
   startGame();
 }
-winningScreen();
-// startGame();
+
+startGame();
+// winningScreen();

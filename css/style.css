@@ -111,3 +111,23 @@ h3 {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.winningScreen__container {
+  width: 100%;
+  height: 30%;
+  margin-top: 33%;
+}
+
+.congrat__container {
+  font: normal normal 400 200%/normal "Quicksand", sans-serif;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.stats__container {
+  font: normal normal 400 110%/normal "Quicksand", sans-serif;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
