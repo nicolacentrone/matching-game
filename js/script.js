@@ -278,7 +278,7 @@ function createHeader () {
 //For debug purpose, you can win by clicking the header
   newHeader.addEventListener("click", winningScreen, false);
 
-  newHeader.innerHTML="Poké Memory";
+  newHeader.innerHTML="Memory Game";
   var section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
   createTime();

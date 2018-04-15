@@ -1,0 +1,42 @@
+h1 {
+  width: 100%;
+  margin: auto;
+}
+
+header {
+  width: 100%;
+}
+
+.game__flipper-container, .game__flipper,.game__box-front, .game__box-back, .picture {
+	width: 19vw;
+	height: 19vw;
+}
+
+.game__flipper-container {
+  margin: 1.7vw;
+}
+.game {
+  width: 90vw;
+  height: 90vw;
+}
+
+.section0 {
+  width: 100%;
+  height: auto;
+}
+
+.section1, .section2, .section3, .section4 {
+  width: 25%;
+  height: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.repeatButton__container {
+  width: 32px;
+  height: 32px;
+}
+
+.game__box-back {
+  background-size: 19vw;
+}
