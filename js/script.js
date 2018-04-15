@@ -109,28 +109,20 @@ function setPictures () {
     var num = gameBoxBack[i].classList[1];
     if (num == 1) {
       gameBoxBack[i].style.backgroundImage = "url(img/ivysaur.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 2) {
       gameBoxBack[i].style.backgroundImage = "url(img/pikachu.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 3) {
       gameBoxBack[i].style.backgroundImage = "url(img/krabby.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 4) {
       gameBoxBack[i].style.backgroundImage = "url(img/pidgeon.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 5) {
       gameBoxBack[i].style.backgroundImage = "url(img/vaporeon.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 6) {
       gameBoxBack[i].style.backgroundImage = "url(img/dugtrio.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 7) {
       gameBoxBack[i].style.backgroundImage = "url(img/jigglypuff.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     } else if (num == 8) {
       gameBoxBack[i].style.backgroundImage = "url(img/squirtle.png)";
-      gameBoxBack[i].style.backgroundSize = "120px 120px";
     }
   }
 }

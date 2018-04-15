@@ -24,6 +24,10 @@
   border-radius: 10px;
 }
 
+.game__box-back {
+  background-size: 120px;
+}
+
 .game__flipper {
 	transition: 0.6s;
 	transform-style: preserve-3d;
