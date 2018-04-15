@@ -171,8 +171,6 @@ function winningScreen () {
   newP1.innerHTML = countMoves + " moves";
   statsDiv[2].appendChild(newP1);
 
-
-
   var newDiv3 = document.createElement("div");
   newDiv3.setAttribute("class", "button__container");
   var btn = document.createElement("button");
