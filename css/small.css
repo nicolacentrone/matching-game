@@ -40,3 +40,7 @@ header {
 .game__box-back {
   background-size: 19vw;
 }
+
+.stats__container {
+  width: 100%;
+}

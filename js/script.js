@@ -134,7 +134,7 @@ function winningScreen () {
   newDiv0.setAttribute("class", "winningScreen__container");
 
   var newDiv1= document.createElement("div");
-  newDiv1.setAttribute("class", "congrat__container");
+  newDiv1.setAttribute("class", "congrat__container swing");
   var congratsText = document.createElement("p")
   congratsText.innerHTML = "Congratulations <br> You Win!";
   newDiv1.appendChild(congratsText);
