@@ -185,17 +185,17 @@ function winningScreen () {
 }
 
 function createGameHeaderDiv () {
-  const main = document.querySelector("main");
-  const newGameDiv = document.createElement("div");
-  main.appendChild(newGameDiv);
-  newGameDiv.setAttribute("class", "header");
+  const MAIN = document.querySelector("main");
+  const NEW_GAME_DIV = document.createElement("div");
+  MAIN.appendChild(NEW_GAME_DIV);
+  NEW_GAME_DIV.setAttribute("class", "header");
 }
 
 function createGameDiv () {
-  const main = document.querySelector("main");
-  const newGameDiv = document.createElement("div");
-  main.appendChild(newGameDiv);
-  newGameDiv.setAttribute("class", "game");
+  const MAIN = document.querySelector("main");
+  const NEW_GAME_DIV = document.createElement("div");
+  MAIN.appendChild(NEW_GAME_DIV);
+  NEW_GAME_DIV.setAttribute("class", "game");
 }
 
 function createFlipperContainerDiv () {
