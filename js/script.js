@@ -9,15 +9,15 @@ let cardsFlipped = 0; /* The cards that are flipped in this moment. They can be
 matches. */
 let eventTarget1;
 let eventTarget2;
-let isCicleStarted = "false";
+let isCicleStarted = false;
 let numberOfMatches = 0;
 let time;
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let countMoves = 0;
-let isCleared = "false";
-let isRestarted = "false";
+let isCleared = false;
+let isRestarted = false;
 let stars;
 let newTime;
 
@@ -31,13 +31,13 @@ function setEventListeners () {
 
 function flipperLogic (event) {
   if (numberOfMatches < 8) {
-    if ((cardsFlipped == 0 && isCicleStarted == "false") && (event.target.classList[0] == "game__box-front")) {
-      isCicleStarted = "true";
+    if ((cardsFlipped == 0 && isCicleStarted == false) && (event.target.classList[0] == "game__box-front")) {
+      isCicleStarted = true;
       flip(event);
       cardsFlipped ++;
       number1 = event.target.nextElementSibling.classList[1];
       eventTarget1 = event.target;
-    } else if ((cardsFlipped == 1 && isCicleStarted == "true") && (event.target.classList[0] == "game__box-front")) {
+    } else if ((cardsFlipped == 1 && isCicleStarted == true) && (event.target.classList[0] == "game__box-front")) {
       flip(event);
       cardsFlipped ++;
       number2 = event.target.nextElementSibling.classList[1];
@@ -48,7 +48,7 @@ function flipperLogic (event) {
       } else {
         countMoves ++;
         cardsFlipped = 0;
-        isCicleStarted = "false";
+        isCicleStarted = false;
         numberOfMatches ++;
         if (numberOfMatches == 8) {
           winningScreen();
@@ -74,7 +74,7 @@ function unflip (node1, node2) {
     node1.parentNode.setAttribute("class", "game__flipper");
     node2.parentNode.setAttribute("class", "game__flipper");
     cardsFlipped = 0;
-    isCicleStarted = "false";
+    isCicleStarted = false;
   }, 1000);
 
 }
@@ -137,7 +137,7 @@ function winningScreen () {
   let btn;
   let text;
 
-  isRestarted = "false";
+  isRestarted = false;
   newMain = clearScreen();
 
   newDiv0 = document.createElement("div");
@@ -250,7 +250,7 @@ function clearScreen () {
   seconds = 0;
   minutes = 0;
   hours = 0;
-  isCleared = "true";
+  isCleared = true;
   return newContainer;
 }
 
@@ -261,7 +261,7 @@ function createGameStruct () {
   createFlipperContainerDiv();
   createFlipperDiv();
   createBoxes();
-  isCleared = "false";
+  isCleared = false;
 }
 
 function startGame () {
@@ -270,7 +270,7 @@ function startGame () {
   setSeries(nodes, numberSeries);
   setPictures();
   setEventListeners();
-  if (isRestarted == "false") {
+  if (isRestarted == false) {
     timer();
   }
 }
@@ -323,7 +323,7 @@ function addTime() {
             hours ++;
         }
     }
-    if (isCleared == "false") {
+    if (isCleared == false) {
       document.querySelector(".time").textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" +
       (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
       timer();
@@ -379,7 +379,7 @@ function createRepeat () {
 }
 
 function reStartGame () {
-  isRestarted = "true";
+  isRestarted = true;
   startGame();
 }
 
