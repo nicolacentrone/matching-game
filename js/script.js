@@ -1,31 +1,30 @@
-var numberSeries = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
-var gameBoxBack = [];
-var nodes = [];
-var gameFlipper = [];
-var number1;
-var number2;
-
-var cardsFlipped = 0; /* The cards that are flipped in this moment. They can be 0, 1, 2.
-/* This is not the number of total cards flipped, neither the number of matches.*/
-
-var eventTarget1;
-var eventTarget2;
-var isCicleStarted = "false";
-var numberOfMatches = 0;
-var time;
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-var countMoves = 0;
-var isCleared = "false";
-var isRestarted = "false";
-var stars;
-var newTime;
+let numberSeries = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
+let gameBoxBack = [];
+let nodes = [];
+let gameFlipper = [];
+let number1;
+let number2;
+let cardsFlipped = 0; /* The cards that are flipped in this moment. They can be
+0, 1, 2. This is not the number of total cards flipped, neither the number of
+matches. */
+let eventTarget1;
+let eventTarget2;
+let isCicleStarted = "false";
+let numberOfMatches = 0;
+let time;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let countMoves = 0;
+let isCleared = "false";
+let isRestarted = "false";
+let stars;
+let newTime;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll(".game__flipper");
-  for (var i = 0; i < gameFlipper.length; i++) {
-    var node = gameFlipper[i];
+  for (let i = 0; i < gameFlipper.length; i++) {
+    let node = gameFlipper[i];
     node.addEventListener("click", flipperLogic, false);
   }
 }
@@ -81,7 +80,7 @@ function unflip (node1, node2) {
 }
 
 function shuffle(a) {
-    var j, x, i;
+    let j, x, i;
     for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
         x = a[i];
@@ -91,10 +90,11 @@ function shuffle(a) {
 }
 
 function setSeries (nodes, numberSeries) {
+  let node;
   nodes = [];
   gameBoxBack = document.querySelectorAll(".game__box-back");
   for (let i = 0; i < gameBoxBack.length; i++) {
-    var node = gameBoxBack[i];
+    node = gameBoxBack[i];
     nodes.push(node);
   }
   for (let j = 0; j < nodes.length; j++) {
@@ -105,8 +105,9 @@ function setSeries (nodes, numberSeries) {
 }
 
 function setPictures () {
+  let num;
   for (let i = 0; i < gameBoxBack.length; i++) {
-    var num = gameBoxBack[i].classList[1];
+    num = gameBoxBack[i].classList[1];
     if (num == 1) {
       gameBoxBack[i].style.backgroundImage = "url(img/ivysaur.png)";
     } else if (num == 2) {
@@ -128,45 +129,52 @@ function setPictures () {
 }
 
 function winningScreen () {
-  isRestarted = "false";
-  var newMain = clearScreen();
-  var newDiv0 = document.createElement("div");
-  newDiv0.setAttribute("class", "winningScreen__container");
+  let newMain;
+  let newDiv0, newDiv1, newDiv2, newDiv3;
+  let congratsText;
+  let statsDiv = [];
+  let newP, newP0, newP1;
+  let btn;
+  let text;
 
-  var newDiv1= document.createElement("div");
+  isRestarted = "false";
+  newMain = clearScreen();
+
+  newDiv0 = document.createElement("div");
+  newDiv0.setAttribute("class", "winningScreen__container");
+  newDiv1= document.createElement("div");
   newDiv1.setAttribute("class", "congrat__container swing");
-  var congratsText = document.createElement("p");
+  congratsText = document.createElement("p");
   congratsText.innerHTML = "Congratulations <br> You Win!";
   newDiv1.appendChild(congratsText);
   newDiv0.appendChild(newDiv1);
 
-  var newDiv2 = document.createElement("div");
+  newDiv2 = document.createElement("div");
   newDiv0.appendChild(newDiv2);
   newDiv2.setAttribute("class", "stats__container");
   newDiv0.appendChild(newDiv2);
-  var statsDiv = [];
-  for (var i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i++) {
     statsDiv[i] = document.createElement("div");
     statsDiv[i].setAttribute("class", "stats");
     newDiv2.appendChild(statsDiv[i]);
   }
 
-  var newP = document.createElement("p");
+  newP = document.createElement("p");
   newP.innerHTML = stars.innerHTML;
   statsDiv[0].appendChild(newP);
 
-  var newP0 = document.createElement("p");
+  newP0 = document.createElement("p");
   newP0.innerHTML = newTime.innerHTML;
   statsDiv[1].appendChild(newP0);
 
-  var newP1 = document.createElement("p");
+  newP1 = document.createElement("p");
   newP1.innerHTML = countMoves + " moves";
   statsDiv[2].appendChild(newP1);
 
-  var newDiv3 = document.createElement("div");
+  newDiv3 = document.createElement("div");
   newDiv3.setAttribute("class", "button__container");
-  var btn = document.createElement("button");
-  var text = document.createTextNode("Play again");
+  btn = document.createElement("button");
+  text = document.createTextNode("Play again");
   btn.appendChild(text);
   btn.addEventListener("click", startGame, false);
   newDiv3.appendChild(btn);
@@ -191,29 +199,34 @@ function createGameDiv () {
 }
 
 function createFlipperContainerDiv () {
+  let gameDiv;
+  let newFlipperContainerDiv;
   for (let i = 0; i < 16; i++) {
-    var gameDiv = document.querySelector(".game")
-    var newFlipperContainerDiv = document.createElement("div");
+    gameDiv = document.querySelector(".game")
+    newFlipperContainerDiv = document.createElement("div");
     gameDiv.appendChild(newFlipperContainerDiv);
     newFlipperContainerDiv.setAttribute("class", "game__flipper-container");
   }
 }
 
 function createFlipperDiv () {
+  let newFlipperDiv;
   gameFlipperContainers = document.querySelectorAll(".game__flipper-container");
   for (let i = 0; i < gameFlipperContainers.length; i++) {
-    var newFlipperDiv = document.createElement("div");
+    newFlipperDiv = document.createElement("div");
     newFlipperDiv.setAttribute("class", "game__flipper")
     gameFlipperContainers[i].appendChild(newFlipperDiv);
   }
 }
 
 function createBoxes () {
+  let newBoxFront;
+  let newBoxBack;
   gameFlipperContainers = document.querySelectorAll(".game__flipper");
   for (let i = 0; i < gameFlipperContainers.length; i++) {
-    var newBoxFront = document.createElement("div");
+    newBoxFront = document.createElement("div");
     newBoxFront.setAttribute("class", "game__box-front")
-    var newBoxBack = document.createElement("div");
+    newBoxBack = document.createElement("div");
     newBoxBack.setAttribute("class", "game__box-back")
     gameFlipperContainers[i].appendChild(newBoxFront);
     gameFlipperContainers[i].appendChild(newBoxBack);
@@ -221,13 +234,17 @@ function createBoxes () {
 }
 
 function clearScreen () {
-  var topContainer = document.querySelector(".top-container")
+  let topContainer;
+  let newContainer;
+  let newHeader;
+  let newMain;
+  topContainer = document.querySelector(".top-container")
   topContainer.remove();
-  var newContainer = document.createElement("div");
+  newContainer = document.createElement("div");
   newContainer.setAttribute("class", "top-container");
   document.querySelector("body").appendChild(newContainer);
-  var newHeader = document.createElement("header");
-  var newMain = document.createElement("main");
+  newHeader = document.createElement("header");
+  newMain = document.createElement("main");
   newContainer.appendChild(newHeader);
   newContainer.appendChild(newMain);
   seconds = 0;
@@ -259,19 +276,23 @@ function startGame () {
 }
 
 function createHeader () {
-  var header = document.querySelector("header");
-  for (var i = 0; i < 5; i++) {
-    var newDiv = document.createElement("div");
+  let header;
+  let newDiv;
+  let newHeader;
+  let section0;
+  header = document.querySelector("header");
+  for (let i = 0; i < 5; i++) {
+    newDiv = document.createElement("div");
     newDiv.setAttribute("class", "section"+[i]);
     header.appendChild(newDiv);
   }
-  var newHeader = document.createElement("h1");
+  newHeader = document.createElement("h1");
 
 //For debug purpose, you can win by clicking the header
   newHeader.addEventListener("click", winningScreen, false);
 
   newHeader.innerHTML="Memory Game";
-  var section0 = document.querySelector(".section0");
+  section0 = document.querySelector(".section0");
   section0.appendChild(newHeader);
   createTime();
   createStars();
@@ -310,8 +331,10 @@ function addTime() {
 }
 
 function createStars () {
-  var section1 = document.querySelector(".section1");
-  var newP = document.createElement("p");
+  let section1;
+  let newP;
+  section1 = document.querySelector(".section1");
+  newP = document.createElement("p");
   newP.setAttribute("class", "stars");
   newP.innerHTML = "★ ★ ★";
   section1.appendChild(newP);
@@ -329,20 +352,25 @@ function starsLogic () {
 }
 
 function createMoves () {
-  var section3 = document.querySelector(".section3");
-  var newHdr = document.createElement("h3");
+  let section3;
+  let newHdr;
+  section3 = document.querySelector(".section3");
+  newHdr = document.createElement("h3");
   newHdr.innerHTML = "Moves: " +countMoves;
   section3.appendChild(newHdr);
 }
 
 function clearMoves () {
-  var section3 = document.querySelector(".section3");
+  let section3;
+  section3 = document.querySelector(".section3");
   section3.firstChild.remove();
 }
 
 function createRepeat () {
-  var section4 = document.querySelector(".section4");
-  var newDiv = document.createElement("div");
+  let section4;
+  let newDiv;
+  section4 = document.querySelector(".section4");
+  newDiv = document.createElement("div");
   section4.appendChild(newDiv);
   newDiv.setAttribute("class", "repeatButton__container");
   newDiv.style.backgroundImage = "url(img/repeat.png)";
@@ -356,4 +384,3 @@ function reStartGame () {
 }
 
 startGame();
-// winningScreen();
