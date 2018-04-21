@@ -110,20 +110,28 @@ function setPictures () {
     num = gameBoxBack[i].classList[1];
     if (num == 1) {
       gameBoxBack[i].style.backgroundImage = "url(img/ivysaur.png)";
+      gameBoxBack[i].setAttribute("alt", "Ivysaur");
     } else if (num == 2) {
       gameBoxBack[i].style.backgroundImage = "url(img/pikachu.png)";
+      gameBoxBack[i].setAttribute("alt", "Pikachu");
     } else if (num == 3) {
       gameBoxBack[i].style.backgroundImage = "url(img/krabby.png)";
+      gameBoxBack[i].setAttribute("alt", "Krabby");
     } else if (num == 4) {
       gameBoxBack[i].style.backgroundImage = "url(img/pidgeon.png)";
+      gameBoxBack[i].setAttribute("alt", "Pidgeon");
     } else if (num == 5) {
       gameBoxBack[i].style.backgroundImage = "url(img/vaporeon.png)";
+      gameBoxBack[i].setAttribute("alt", "Vaporeon");
     } else if (num == 6) {
       gameBoxBack[i].style.backgroundImage = "url(img/dugtrio.png)";
+      gameBoxBack[i].setAttribute("alt", "Dugtrio");
     } else if (num == 7) {
       gameBoxBack[i].style.backgroundImage = "url(img/jigglypuff.png)";
+      gameBoxBack[i].setAttribute("alt", "Jigglypuff");
     } else if (num == 8) {
       gameBoxBack[i].style.backgroundImage = "url(img/squirtle.png)";
+      gameBoxBack[i].setAttribute("alt", "Squirtle");
     }
   }
 }
