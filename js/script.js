@@ -144,14 +144,14 @@ function winningScreen () {
   let newP, newP0, newP1;
   let btn;
   let text;
+  let classes = ["win-stats__stars", "win-stats__time", "win-stats__move"];
 
   isRestarted = false;
   newMain = clearScreen();
-
   newDiv0 = document.createElement("div");
-  newDiv0.setAttribute("class", "winningScreen__container");
+  newDiv0.setAttribute("class", "winning-screen__container");
   newDiv1= document.createElement("div");
-  newDiv1.setAttribute("class", "congrat__container swing");
+  newDiv1.setAttribute("class", "congrat__container");
   congratsText = document.createElement("p");
   congratsText.innerHTML = "Congratulations <br> You Win!";
   newDiv1.appendChild(congratsText);
@@ -159,11 +159,11 @@ function winningScreen () {
 
   newDiv2 = document.createElement("div");
   newDiv0.appendChild(newDiv2);
-  newDiv2.setAttribute("class", "stats__container");
+  newDiv2.setAttribute("class", "win-stats");
   newDiv0.appendChild(newDiv2);
   for (let i = 0; i < 3; i++) {
     statsDiv[i] = document.createElement("div");
-    statsDiv[i].setAttribute("class", "stats");
+    statsDiv[i].setAttribute("class", "" + classes[i]);
     newDiv2.appendChild(statsDiv[i]);
   }
 
@@ -287,11 +287,14 @@ function createHeader () {
   let header;
   let newDiv;
   let newHeader;
-  let section0;
+  let headerContainer;
+  let classes = ["header__container", "stats__stars-container",
+  "stats__time-container", "stats__move-container", "stats__replay-container"];
+
   header = document.querySelector("header");
   for (let i = 0; i < 5; i++) {
     newDiv = document.createElement("div");
-    newDiv.setAttribute("class", "section"+[i]);
+    newDiv.setAttribute("class", "" + classes[i]);
     header.appendChild(newDiv);
   }
   newHeader = document.createElement("h1");
@@ -300,8 +303,8 @@ function createHeader () {
   newHeader.addEventListener("click", winningScreen, false);
 
   newHeader.innerHTML="Memory Game";
-  section0 = document.querySelector(".section0");
-  section0.appendChild(newHeader);
+  headerContainer = document.querySelector(".header__container");
+  headerContainer.appendChild(newHeader);
   createTime();
   createStars();
   createMoves();
@@ -310,7 +313,7 @@ function createHeader () {
 
 function createTime (){
   newHdr = document.createElement("h3");
-  document.querySelector(".section2").appendChild(newHdr);
+  document.querySelector(".stats__time-container").appendChild(newHdr);
   newTime = document.createElement("time");
   newTime.innerHTML = "00:00:00";
   newTime.setAttribute("class", "time");
@@ -339,13 +342,13 @@ function addTime() {
 }
 
 function createStars () {
-  let section1;
+  let starsContainer;
   let newP;
-  section1 = document.querySelector(".section1");
+  starsContainer = document.querySelector(".stats__stars-container");
   newP = document.createElement("p");
   newP.setAttribute("class", "stars");
   newP.innerHTML = "★ ★ ★";
-  section1.appendChild(newP);
+  starsContainer.appendChild(newP);
 }
 
 function starsLogic () {
@@ -360,26 +363,26 @@ function starsLogic () {
 }
 
 function createMoves () {
-  let section3;
+  let moveContainer;
   let newHdr;
-  section3 = document.querySelector(".section3");
+  moveContainer = document.querySelector(".stats__move-container");
   newHdr = document.createElement("h3");
   newHdr.innerHTML = "Moves: " +countMoves;
-  section3.appendChild(newHdr);
+  moveContainer.appendChild(newHdr);
 }
 
 function clearMoves () {
-  let section3;
-  section3 = document.querySelector(".section3");
-  section3.firstChild.remove();
+  let moveContainer;
+  moveContainer = document.querySelector(".stats__move-container");
+  moveContainer.firstChild.remove();
 }
 
 function createRepeat () {
-  let section4;
+  let replayContainer;
   let newDiv;
-  section4 = document.querySelector(".section4");
+  replayContainer = document.querySelector(".stats__replay-container");
   newDiv = document.createElement("div");
-  section4.appendChild(newDiv);
+  replayContainer.appendChild(newDiv);
   newDiv.setAttribute("class", "repeatButton__container");
   newDiv.style.backgroundImage = "url(img/repeat.png)";
   newDiv.style.backgroundSize = "28px 28px";
