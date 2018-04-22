@@ -273,6 +273,7 @@ function createGameStruct () {
 }
 
 function startGame () {
+  countMoves = 0;
   createGameStruct();
   shuffle(numberSeries);
   setSeries(nodes, numberSeries);
