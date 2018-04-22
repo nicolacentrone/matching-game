@@ -383,7 +383,7 @@ function createRepeat () {
   replayContainer = document.querySelector('.stats__replay-container');
   newDiv = document.createElement('div');
   replayContainer.appendChild(newDiv);
-  newDiv.setAttribute('class', 'repeatButton__container');
+  newDiv.setAttribute('class', 'repeat-button__container');
   newDiv.style.backgroundImage = 'url(img/repeat.png)';
   newDiv.style.backgroundSize = '28px 28px';
   newDiv.addEventListener('click', reStartGame, false);
