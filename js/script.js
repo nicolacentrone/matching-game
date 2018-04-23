@@ -4,9 +4,13 @@ let nodes = [];
 let gameFlipper = [];
 let number1;
 let number2;
-let cardsFlipped = 0; /* The cards that are flipped in this moment. They can be
+
+/* cardsFlipped: the cards that are flipped in this moment. They can be
 0, 1, 2. This is not the number of total cards flipped, neither the number of
 matches. */
+
+let cardsFlipped = 0;
+
 let eventTarget1;
 let eventTarget2;
 let isCicleStarted = false;
@@ -299,9 +303,6 @@ function createHeader () {
     header.appendChild(newDiv);
   }
   newHeader = document.createElement('h1');
-
-//For debug purpose, you can win by clicking the header
-  newHeader.addEventListener('click', winningScreen, false);
 
   newHeader.innerHTML='Memory Game';
   headerContainer = document.querySelector('.header__container');
