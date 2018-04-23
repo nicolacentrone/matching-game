@@ -4,6 +4,11 @@ let nodes = [];
 let gameFlipper = [];
 let number1;
 let number2;
+let eventTarget1;
+let eventTarget2;
+let time;
+let stars;
+let newTime;
 
 /* cardsFlipped: the cards that are flipped in this moment. They can be
 0, 1, 2. This is not the number of total cards flipped, neither the number of
@@ -11,19 +16,15 @@ matches. */
 
 let cardsFlipped = 0;
 
-let eventTarget1;
-let eventTarget2;
-let isCicleStarted = false;
 let numberOfMatches = 0;
-let time;
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let countMoves = 0;
-let isCleared = false;
-let isRestarted = false;
-let stars;
-let newTime;
+let isCicleStarted = false;
+let isPageCleared = false;
+let isGameRestarted = false;
+let isFirstClick = true;
 
 function setEventListeners () {
   gameFlipper = document.querySelectorAll('.game__flipper');
@@ -34,6 +35,10 @@ function setEventListeners () {
 }
 
 function flipperLogic (event) {
+  if (isFirstClick == true) {
+    timer();
+  }
+  isFirstClick = false;
   if (numberOfMatches < 8) {
     if ((cardsFlipped == 0 && isCicleStarted == false) && (event.target.classList[0] == 'game__box-front')) {
       isCicleStarted = true;
@@ -150,7 +155,7 @@ function winningScreen () {
   let text;
   let classes = ['win-stats__stars', 'win-stats__time', 'win-stats__move'];
 
-  isRestarted = false;
+  isGameRestarted = false;
   newMain = clearScreen();
   newDiv0 = document.createElement('div');
   newDiv0.setAttribute('class', 'winning-screen__container');
@@ -262,7 +267,7 @@ function clearScreen () {
   seconds = 0;
   minutes = 0;
   hours = 0;
-  isCleared = true;
+  isPageCleared = true;
   return newContainer;
 }
 
@@ -273,19 +278,17 @@ function createGameStruct () {
   createFlipperContainerDiv();
   createFlipperDiv();
   createBoxes();
-  isCleared = false;
+  isPageCleared = false;
 }
 
 function startGame () {
   countMoves = 0;
+  isFirstClick = true;
   createGameStruct();
   shuffle(numberSeries);
   setSeries(nodes, numberSeries);
   setPictures();
   setEventListeners();
-  if (isRestarted == false) {
-    timer();
-  }
 }
 
 function createHeader () {
@@ -303,6 +306,8 @@ function createHeader () {
     header.appendChild(newDiv);
   }
   newHeader = document.createElement('h1');
+
+  newHeader.addEventListener('click', winningScreen, false);
 
   newHeader.innerHTML='Memory Game';
   headerContainer = document.querySelector('.header__container');
@@ -336,7 +341,7 @@ function addTime() {
             hours ++;
         }
     }
-    if (isCleared == false) {
+    if (isPageCleared == false) {
       document.querySelector('.time').textContent = (hours ? (hours > 9 ? hours : '0' + hours) : '00') + ':' +
       (minutes ? (minutes > 9 ? minutes : '0' + minutes) : '00') + ':' + (seconds > 9 ? seconds : '0' + seconds);
       timer();
@@ -392,7 +397,8 @@ function createRepeat () {
 }
 
 function reStartGame () {
-  isRestarted = true;
+  isGameRestarted = true;
+  clearTimeout(time);
   startGame();
 }
 
