@@ -122,7 +122,7 @@ function createHeaderDiv () {
 
   // For debug purpose only
   if(IS_DEBUG_MODE == true) {
-    newHeader.addEventListener('click', winningScreen, false);
+    newHeader.addEventListener('click', createWinningScreenStruct, false);
   }
 
   newHeader.innerHTML='Memory Game';
@@ -369,7 +369,7 @@ function flipperLogic (event) {
         isCycleStarted = false;
         numberOfMatches ++;
         if (numberOfMatches == 8) {
-          winningScreen();
+          createWinningScreenStruct();
         }
       }
     }
@@ -384,14 +384,14 @@ function flipperLogic (event) {
 }
 
 /*
-* flip is used to apply the class flip that enables the CSS rotation
+* flip(a) is used to apply the class flip that enables the CSS rotation
 */
 function flip (evt) {
   evt.target.parentNode.setAttribute('class', 'game__flipper flip');
 }
 
 /*
-* unflip is used to delete the class flip that enables the CSS rotation
+* unflip(a,b) is used to delete the class flip that enables the CSS rotation
 */
 function unflip (node1, node2) {
   setTimeout(function() {
@@ -403,60 +403,88 @@ function unflip (node1, node2) {
 
 }
 
-function winningScreen () {
+/*
+* createWinningScreenStruct groups all the functions to paint the winning screen
+* Called by: flipperLogic()
+*/
+function createWinningScreenStruct () {
   let newMain;
-  let newDiv0, newDiv1, newDiv2, newDiv3;
-  let congratsText;
-  let statsDiv = [];
-  let newP, newP0, newP1;
-  let btn;
-  let text;
-  let classes = ['win-stats__stars', 'win-stats__time', 'win-stats__move'];
-
   isGameRestarted = false;
   newMain = clearScreen();
+  createCongrats();
+  createStatsDiv();
+  createPlayAgainBtn();
+  countMoves = 0;
+}
+
+/*
+* Creates the congratulations section
+* Called by: createWinningScreenStruct
+*/
+function createCongrats () {
+  let newDiv0, newDiv1;
+  let congratsText;
+  let newMain;
   newDiv0 = document.createElement('div');
   newDiv0.setAttribute('class', 'winning-screen__container');
-  newDiv1= document.createElement('div');
+  newDiv1 = document.createElement('div');
   newDiv1.setAttribute('class', 'congrat__container');
   congratsText = document.createElement('p');
   congratsText.innerHTML = 'Congratulations <br> You Win!';
   newDiv1.appendChild(congratsText);
   newDiv0.appendChild(newDiv1);
+  newMain = document.querySelector("main");
+  newMain.appendChild(newDiv0);
+}
 
-  newDiv2 = document.createElement('div');
-  newDiv0.appendChild(newDiv2);
-  newDiv2.setAttribute('class', 'win-stats');
-  newDiv0.appendChild(newDiv2);
+/*
+* Creates the stats section in the winning screen
+* Called by: createWinningScreenStruct()
+*/
+function createStatsDiv () {
+  let newDiv0;
+  let newMain;
+  let newP, newP0, newP1;
+  let winningScreenContainer;
+  let statsDiv = [];
+  let classes = ['win-stats__stars', 'win-stats__time', 'win-stats__move'];
+  winningScreenContainer = document.querySelector('.winning-screen__container');
+  newDiv0 = document.createElement('div');
+  newDiv0.setAttribute('class', 'win-stats');
+  winningScreenContainer.appendChild(newDiv0);
   for (let i = 0; i < 3; i++) {
     statsDiv[i] = document.createElement('div');
     statsDiv[i].setAttribute('class', '' + classes[i]);
-    newDiv2.appendChild(statsDiv[i]);
+    newDiv0.appendChild(statsDiv[i]);
   }
-
   newP = document.createElement('p');
   newP.innerHTML = stars.innerHTML;
   statsDiv[0].appendChild(newP);
-
   newP0 = document.createElement('p');
   newP0.innerHTML = newTime.innerHTML;
   statsDiv[1].appendChild(newP0);
-
   newP1 = document.createElement('p');
   newP1.innerHTML = countMoves + ' moves';
   statsDiv[2].appendChild(newP1);
+}
 
-  newDiv3 = document.createElement('div');
-  newDiv3.setAttribute('class', 'button__container');
+/*
+* Creates the Play Again button
+* Called by: createWinningScreenStruct()
+*/
+function createPlayAgainBtn () {
+  let newDiv0, newDiv1;
+  let btn;
+  let text;
+  newDiv0 = document.querySelector('.winning-screen__container');
+  newDiv1 = document.createElement('div');
+  newDiv1.setAttribute('class', 'button__container');
   btn = document.createElement('button');
   text = document.createTextNode('Play again');
   btn.appendChild(text);
   btn.addEventListener('click', startGame, false);
-  newDiv3.appendChild(btn);
-  newDiv0.appendChild(newDiv3);
-
-  newMain.appendChild(newDiv0);
-  countMoves = 0;
+  newDiv1.appendChild(btn);
+  newDiv0.appendChild(newDiv1);
 }
 
 function createGameHeaderDiv () {
