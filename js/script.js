@@ -487,13 +487,6 @@ function createPlayAgainBtn () {
   newDiv0.appendChild(newDiv1);
 }
 
-function createGameHeaderDiv () {
-  const main = document.querySelector('main');
-  const newGameDiv = document.createElement('div');
-  main.appendChild(newGameDiv);
-  newGameDiv.setAttribute('class', 'header');
-}
-
 /*
 * Used setTimeout as time counter
 */
