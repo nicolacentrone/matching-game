@@ -25,11 +25,12 @@ let isCycleStarted = false;
 /* To allow the refresh of timestamp only in the game screen and not in the
  winning screen */
 let isPageCleared = false;
+
 let isGameRestarted = false;
 let isFirstClick = true;
 
 /* If set to true, by clicking the main title you can win the game */
-const isDebugMode = true;
+const IS_DEBUG_MODE = true;
 
 /*
 * startGame is a container function for grouping all the functions to start
@@ -51,7 +52,7 @@ function startGame () {
 */
 function createGameStruct () {
   clearScreen();
-  createHeader();
+  createHeaderStruct();
   createGameDiv();
   createFlipperContainerDiv();
   createFlipperDiv();
@@ -89,10 +90,22 @@ function clearScreen () {
 }
 
 /*
-* createHeader groups various functions to build the top part of the game
+* createHeaderStruct groups various functions to build the top part of the game
 * Called by: createGameStruct
 */
-function createHeader () {
+function createHeaderStruct () {
+  createHeaderDiv();
+  createTime();
+  createStars();
+  createMoves();
+  createRepeat();
+}
+
+/*
+* Creates the necessary divs for the header
+* Called by: createHeaderStruct()
+*/
+function createHeaderDiv () {
   let header;
   let newDiv;
   let newHeader;
@@ -108,22 +121,18 @@ function createHeader () {
   newHeader = document.createElement('h1');
 
   // For debug purpose only
-  if(isDebugMode == true) {
+  if(IS_DEBUG_MODE == true) {
     newHeader.addEventListener('click', winningScreen, false);
   }
 
   newHeader.innerHTML='Memory Game';
   headerContainer = document.querySelector('.header__container');
   headerContainer.appendChild(newHeader);
-  createTime();
-  createStars();
-  createMoves();
-  createRepeat();
 }
 
 /*
 * Prints the 00:00:00 timestamp in the header
-* Called by: createHeader()
+* Called by: createHeaderStruct()
 */
 function createTime (){
   let newHdr;
@@ -137,7 +146,7 @@ function createTime (){
 
 /*
 * Prints the three stars in the header
-* Called by: createHeader()
+* Called by: createHeaderStruct()
 */
 function createStars () {
   let starsContainer;
@@ -151,7 +160,7 @@ function createStars () {
 
 /*
 * Prints the number of moves
-* Called by: createHeader()
+* Called by: createHeaderStruct()
 */
 function createMoves () {
   let moveContainer;
@@ -164,7 +173,7 @@ function createMoves () {
 
 /*
 * Prints the in-game repeat icon in the header and starts the eventListener
-* Called by: createHeader()
+* Called by: createHeaderStruct()
 */
 function createRepeat () {
   let replayContainer;
@@ -183,10 +192,10 @@ function createRepeat () {
 * Called by: createGameStruct
 */
 function createGameDiv () {
-  const MAIN = document.querySelector('main');
-  const NEW_GAME_DIV = document.createElement('div');
-  MAIN.appendChild(NEW_GAME_DIV);
-  NEW_GAME_DIV.setAttribute('class', 'game');
+  const main = document.querySelector('main');
+  const newGameDiv = document.createElement('div');
+  main.appendChild(newGameDiv);
+  newGameDiv.setAttribute('class', 'game');
 }
 
 /*
@@ -451,10 +460,10 @@ function winningScreen () {
 }
 
 function createGameHeaderDiv () {
-  const MAIN = document.querySelector('main');
-  const NEW_GAME_DIV = document.createElement('div');
-  MAIN.appendChild(NEW_GAME_DIV);
-  NEW_GAME_DIV.setAttribute('class', 'header');
+  const main = document.querySelector('main');
+  const newGameDiv = document.createElement('div');
+  main.appendChild(newGameDiv);
+  newGameDiv.setAttribute('class', 'header');
 }
 
 /*
