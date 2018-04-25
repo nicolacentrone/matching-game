@@ -14,11 +14,11 @@ time only!
 ### Game features
 
 - In-game restart: Click on the two arrows on the top-right corner of the
-Game Board to restart a new game immediately;
+Game Board to restart a new game immediately.
 - Star Rating: How much sharp is your memory? The more moves you make the less
 stars you get. Stay awake!
-- In-game timer
-- Number of moves
+- In-game timer: Beat the time!
+- Number of moves.
 
 ## License
 MIT License
@@ -42,6 +42,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Attribution
+## Resources and Dependencies
 
 - Shuffle code: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
