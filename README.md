@@ -33,3 +33,7 @@ details
 
 Just download or clone the project, then open index.html with your favorite
 browser
+
+## CSS Style
+
+BEM has been used to name the classes.
