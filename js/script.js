@@ -545,6 +545,8 @@ function reStartGame () {
   isGameRestarted = true;
   clearTimeout(time);
   startGame();
+  cardsFlipped = 0;
+  isCycleStarted = false;
 }
 
 startGame();
