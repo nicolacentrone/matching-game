@@ -9,6 +9,7 @@ let eventTarget2;
 let time;
 let stars;
 let newTime;
+let gameFlipperContainers;
 
 /* The cards that are flipped in this moment. They can be
 0, 1, 2. This is not the number of total cards flipped, neither the number of
@@ -30,7 +31,7 @@ let isGameRestarted = false;
 let isFirstClick = true;
 
 /* If set to true, by clicking the main title you can win the game */
-const IS_DEBUG_MODE = true;
+const IS_DEBUG_MODE = false;
 
 /*
 * startGame is a container function for grouping all the functions to start
@@ -70,7 +71,7 @@ function clearScreen () {
   let newContainer;
   let newHeader;
   let newMain;
-  topContainer = document.querySelector('.top-container')
+  topContainer = document.querySelector('.top-container');
   topContainer.remove();
   newContainer = document.createElement('div');
   newContainer.setAttribute('class', 'top-container');
@@ -121,7 +122,7 @@ function createHeaderDiv () {
   newHeader = document.createElement('h1');
 
   // For debug purpose only
-  if(IS_DEBUG_MODE == true) {
+  if(IS_DEBUG_MODE === true) {
     newHeader.addEventListener('click', createWinningScreenStruct, false);
   }
 
@@ -222,7 +223,7 @@ function createFlipperDiv () {
   gameFlipperContainers = document.querySelectorAll('.game__flipper-container');
   for (let i = 0; i < gameFlipperContainers.length; i++) {
     newFlipperDiv = document.createElement('div');
-    newFlipperDiv.setAttribute('class', 'game__flipper')
+    newFlipperDiv.setAttribute('class', 'game__flipper');
     gameFlipperContainers[i].appendChild(newFlipperDiv);
   }
 }
@@ -237,9 +238,9 @@ function createBoxes () {
   gameFlipperContainers = document.querySelectorAll('.game__flipper');
   for (let i = 0; i < gameFlipperContainers.length; i++) {
     newBoxFront = document.createElement('div');
-    newBoxFront.setAttribute('class', 'game__box-front')
+    newBoxFront.setAttribute('class', 'game__box-front');
     newBoxBack = document.createElement('div');
-    newBoxBack.setAttribute('class', 'game__box-back')
+    newBoxBack.setAttribute('class', 'game__box-back');
     gameFlipperContainers[i].appendChild(newBoxFront);
     gameFlipperContainers[i].appendChild(newBoxBack);
   }
@@ -334,7 +335,7 @@ function setEventListeners () {
 */
 function flipperLogic (event) {
   // Needed to check if it is the first click, because it starts the timer once
-  if (isFirstClick == true) {
+  if (isFirstClick === true) {
     timer();
   }
   isFirstClick = false;
@@ -344,7 +345,7 @@ function flipperLogic (event) {
 
     /* Is the first card to be clicked? We need also to prevent an error when a
     player keeps clicking constantly on a rotated card */
-    if ((cardsFlipped == 0 && isCycleStarted == false) && (event.target.classList[0] == 'game__box-front')) {
+    if ((cardsFlipped === 0 && isCycleStarted === false) && (event.target.classList[0] == 'game__box-front')) {
       isCycleStarted = true;
       flip(event);
       cardsFlipped ++;
@@ -353,7 +354,7 @@ function flipperLogic (event) {
 
     /* Is a card is already turned? We need also to prevent an error when a
     player keeps clicking constantly on a rotated card */
-    } else if ((cardsFlipped == 1 && isCycleStarted == true) && (event.target.classList[0] == 'game__box-front')) {
+  } else if ((cardsFlipped == 1 && isCycleStarted === true) && (event.target.classList[0] == 'game__box-front')) {
       flip(event);
       cardsFlipped ++;
       number2 = event.target.nextElementSibling.classList[1];
@@ -443,7 +444,6 @@ function createCongrats () {
 */
 function createStatsDiv () {
   let newDiv0;
-  let newMain;
   let newP, newP0, newP1;
   let winningScreenContainer;
   let statsDiv = [];
@@ -507,7 +507,7 @@ function addTime() {
             hours ++;
         }
     }
-    if (isPageCleared == false) {
+    if (isPageCleared === false) {
       document.querySelector('.time').textContent = (hours ? (hours > 9 ? hours : '0' + hours) : '00') + ':' +
       (minutes ? (minutes > 9 ? minutes : '0' + minutes) : '00') + ':' + (seconds > 9 ? seconds : '0' + seconds);
       timer();
